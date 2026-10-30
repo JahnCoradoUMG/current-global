@@ -36,13 +36,11 @@ Documentación detallada en [`docs/`](docs/):
 
 ## URLs públicas
 
-> Se completan al finalizar el despliegue (épica E8).
-
 | Recurso | URL |
 |---------|-----|
-| Frontend | _TBD_ |
-| Backend | _TBD_ |
-| Documentación API (Swagger) | _TBD_ (épica E8; ruta `/api/docs`) |
+| Frontend | https://current-global.vercel.app |
+| Backend | https://current-global-api.onrender.com |
+| Documentación API (Swagger) | https://current-global-api.onrender.com/api/docs |
 | Repositorio GitHub | https://github.com/JahnCoradoUMG/current-global |
 
 ## Configuración local
