@@ -1,0 +1,36 @@
+Summary,Issue Type,Description,Parent Summary,Labels
+E1 Documentación,Epic,"System brief, arquitectura, modelo de datos y contratos. Base de Fase 1.",,fase1 docs
+E2 Foundation,Epic,"Monorepo apps/web + apps/api, Prisma, env, CORS, health.",,foundation
+E3 Auth y seguridad,Epic,"Registro/login, bcrypt, JWT, validación DTOs (2 pts rúbrica).",,auth seguridad
+E4 API dominio,Epic,"Posts, likes, comments, follows, feed, notifications (3 pts).",,api
+E5 Frontend SSR,Epic,"Login, feed, perfil SSR responsive conectado a API (3 pts).",,frontend
+E6 Tiempo real,Epic,"Socket.IO: notificaciones, contadores, chat 1-a-1 (2 pts).",,realtime
+E7 Swagger,Epic,"OpenAPI público en /api/docs + enlace README.",,swagger
+E8 Despliegue,Epic,"Frontend Vercel + Backend Render públicos (3 pts).",,deploy
+E9 Entrega PDF,Epic,"PDF académico Canvas con capturas y URLs vivas.",,entrega
+Redactar system brief y arquitectura,Tarea,"docs/00 y docs/01 con diagramas Mermaid.",E1 Documentación,docs
+Redactar modelo de datos y contratos API,Tarea,"docs/02 y docs/03.",E1 Documentación,docs
+Redactar realtime security deployment evaluation,Tarea,"docs/04 a docs/07.",E1 Documentación,docs
+README stub y .env.example,Tarea,"Plantillas sin secretos.",E1 Documentación,docs
+Documentar tablero Jira,Tarea,"docs/08-jira-board.md con URL y cuenta UMG.",E1 Documentación,docs jira
+Scaffold monorepo Next.js + NestJS,Tarea,"Crear apps/web y apps/api con TypeScript.",E2 Foundation,foundation
+Prisma schema + migración inicial,Tarea,"Modelo User Post Like Comment Follow Notification Chat.",E2 Foundation,db
+CORS env y health endpoint,Tarea,"Configuración segura y GET /api/health.",E2 Foundation,seguridad
+Implementar register con bcrypt,Historia,"POST /api/auth/register con hash cost >= 10.",E3 Auth y seguridad,auth
+Implementar login JWT,Historia,"POST /api/auth/login + GET /api/auth/me + guards.",E3 Auth y seguridad,auth
+Validación DTOs y manejo de errores,Tarea,"ValidationPipe global y formato de error uniforme.",E3 Auth y seguridad,seguridad
+CRUD Posts + Cloudinary,Historia,"Crear listar eliminar posts texto/multimedia.",E4 API dominio,api
+Likes y comentarios,Historia,"Toggle like y comentarios con contadores.",E4 API dominio,api
+Follows feed y notificaciones,Historia,"Follow/unfollow, feed global/following, notifs persistidas.",E4 API dominio,api
+UI auth login register,Historia,"Vistas responsive de autenticación.",E5 Frontend SSR,frontend
+Feed SSR,Historia,"Feed general/personalizado renderizado en servidor.",E5 Frontend SSR,frontend
+Perfil de usuario SSR,Historia,"Vista /u/[username] con posts y follows.",E5 Frontend SSR,frontend
+Gateway Socket.IO + auth,Tarea,"Handshake JWT y rooms user/post/conversation.",E6 Tiempo real,realtime
+Eventos live likes comments notifs,Historia,"Actualización en vivo de contadores y notificaciones.",E6 Tiempo real,realtime
+Chat 1-a-1 en vivo,Historia,"Conversaciones DM con mensajes Socket.IO.",E6 Tiempo real,realtime
+Configurar Swagger NestJS,Tarea,"UI en /api/docs con DTOs anotados.",E7 Swagger,swagger
+Enlace Swagger en README,Tarea,"Documentar ruta pública de la API.",E7 Swagger,docs
+Deploy API + Postgres Render,Tarea,"Migrate deploy y dominio público backend.",E8 Despliegue,deploy
+Deploy frontend Vercel,Tarea,"NEXT_PUBLIC_API_URL y WS apuntando a prod.",E8 Despliegue,deploy
+Smoke test prod y URLs README,Tarea,"Verificar FE BE docs y actualizar README.",E8 Despliegue,deploy
+Redactar y entregar PDF Canvas,Tarea,"Nombre carné capturas repo FE BE Swagger.",E9 Entrega PDF,entrega

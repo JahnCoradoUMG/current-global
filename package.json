@@ -1,0 +1,29 @@
+{
+  "name": "current-global",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Current Global — mini red social universitaria",
+  "workspaces": [
+    "apps/*"
+  ],
+  "scripts": {
+    "dev:api": "npm run start:dev -w api",
+    "dev:web": "npm run dev -w web",
+    "build:api": "npm run build -w api",
+    "build:web": "npm run build -w web",
+    "db:up": "docker compose up -d",
+    "db:down": "docker compose down",
+    "db:migrate": "npm run prisma:migrate -w api",
+    "db:generate": "npm run prisma:generate -w api",
+    "db:seed": "npm run prisma:seed -w api"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "allowScripts": {
+    "@prisma/client@6.19.3": true,
+    "prisma@6.19.3": true,
+    "@prisma/engines@6.19.3": true,
+    "bcrypt@6.0.0": true
+  }
+}
