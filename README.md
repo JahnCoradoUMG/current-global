@@ -43,7 +43,7 @@ Documentación detallada en [`docs/`](docs/):
 | Frontend | _TBD_ |
 | Backend | _TBD_ |
 | Documentación API (Swagger) | _TBD_ (épica E8; ruta `/api/docs`) |
-| Repositorio GitHub | _TBD_ |
+| Repositorio GitHub | https://github.com/JahnCoradoUMG/current-global |
 
 ## Configuración local
 
