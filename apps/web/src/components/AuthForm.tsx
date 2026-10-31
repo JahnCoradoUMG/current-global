@@ -14,10 +14,17 @@ export function AuthForm({ mode }: { mode: Mode }) {
   const router = useRouter();
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
+  const [acceptedTerms, setAcceptedTerms] = useState(false);
 
   async function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setError(null);
+
+    if (mode === "login" && !acceptedTerms) {
+      setError("Acepta los términos y condiciones para entrar.");
+      return;
+    }
+
     setLoading(true);
 
     const form = new FormData(e.currentTarget);
@@ -99,6 +106,23 @@ export function AuthForm({ mode }: { mode: Mode }) {
               minLength={8}
             />
           </div>
+
+          {mode === "login" && (
+            <label className={styles.terms}>
+              <input
+                type="checkbox"
+                name="acceptTerms"
+                checked={acceptedTerms}
+                onChange={(event) => setAcceptedTerms(event.target.checked)}
+                required
+              />
+              <span>
+                Acepto los términos y condiciones: Current Global guarda datos
+                personales, como el correo, el nombre y el usuario, para operar
+                la cuenta.
+              </span>
+            </label>
+          )}
 
           {error && <div className="error-box">{error}</div>}
 

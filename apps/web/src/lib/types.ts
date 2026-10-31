@@ -41,6 +41,13 @@ export type Paginated<T> = {
   };
 };
 
+export type UserSearchHit = {
+  id: string;
+  username: string;
+  displayName: string;
+  avatarUrl: string | null;
+};
+
 export type UserProfile = UserPublic & {
   createdAt: string;
   postsCount: number;

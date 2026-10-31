@@ -12,6 +12,7 @@ import {
   ApiOkResponse,
   ApiOperation,
   ApiParam,
+  ApiQuery,
   ApiTags,
 } from '@nestjs/swagger';
 import type { AuthUser } from '../auth/auth.types';
@@ -23,6 +24,7 @@ import {
   AuthUserDto,
   PaginatedPostsDto,
   UserProfileDto,
+  UserSearchResultDto,
 } from '../common/swagger-models';
 import { UpdateProfileDto } from './dto/update-profile.dto';
 import { UsersService } from './users.service';
@@ -41,6 +43,26 @@ export class UsersController {
   @ApiErrorResponses(400)
   updateMe(@CurrentUser() user: AuthUser, @Body() dto: UpdateProfileDto) {
     return this.usersService.updateMe(user.id, dto);
+  }
+
+  @Get('search')
+  @ApiOperation({ summary: 'Buscar usuarios por username o nombre' })
+  @ApiQuery({
+    name: 'q',
+    required: true,
+    description: 'Texto a buscar. Mínimo 2 caracteres.',
+    schema: { type: 'string', minLength: 2 },
+  })
+  @ApiQuery({
+    name: 'limit',
+    required: false,
+    description: 'Cantidad máxima de resultados (default 8, máximo 20)',
+    schema: { type: 'integer', default: 8, minimum: 1, maximum: 20 },
+  })
+  @ApiOkResponse({ type: UserSearchResultDto })
+  @ApiErrorResponses(400)
+  search(@Query('q') q?: string, @Query('limit') limit?: string) {
+    return this.usersService.search(q ?? '', limit ? Number(limit) : undefined);
   }
 
   @Get(':username/posts')

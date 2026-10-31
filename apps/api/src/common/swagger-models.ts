@@ -53,6 +53,25 @@ export class AuthResponseDto {
   accessToken!: string;
 }
 
+export class UserSearchHitDto {
+  @ApiProperty({ example: '3fa85f64-5717-4562-b3fc-2c963f66afa6' })
+  id!: string;
+
+  @ApiProperty({ example: 'cesar' })
+  username!: string;
+
+  @ApiProperty({ example: 'Cesar Puac' })
+  displayName!: string;
+
+  @ApiProperty({ type: String, nullable: true, example: null })
+  avatarUrl!: string | null;
+}
+
+export class UserSearchResultDto {
+  @ApiProperty({ type: [UserSearchHitDto] })
+  data!: UserSearchHitDto[];
+}
+
 export class UserProfileDto extends AuthUserDto {
   @ApiProperty({ type: String, format: 'date-time' })
   createdAt!: Date;

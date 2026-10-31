@@ -64,6 +64,27 @@ Respuesta:
 
 ## 3. Users — `/api/users`
 
+### `GET /api/users/search?q&limit` (protegido)
+Busca por `username` o `displayName`, sin distinguir mayúsculas. La ruta estática va antes de `/:username`.
+
+Query: `q` (mínimo 2 caracteres), `limit` (default 8, máximo 20).
+
+**200:**
+```json
+{
+  "data": [
+    {
+      "id": "...",
+      "username": "cesar",
+      "displayName": "Cesar Puac",
+      "avatarUrl": null
+    }
+  ]
+}
+```
+
+No incluye `email`. **400** si `q` tiene menos de 2 caracteres.
+
 ### `GET /api/users/:username` (protegido o público según decisión MVP: protegido)
 Perfil + contadores: `postsCount`, `followersCount`, `followingCount`, `isFollowing`.
 

@@ -1,4 +1,8 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import {
+  BadRequestException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { normalizePagination, paginated } from '../common/pagination';
 import {
   likedByMeInclude,
@@ -11,6 +15,38 @@ import { UpdateProfileDto } from './dto/update-profile.dto';
 @Injectable()
 export class UsersService {
   constructor(private readonly prisma: PrismaService) {}
+
+  async search(query: string, limit?: number) {
+    const q = query.trim();
+    if (q.length < 2) {
+      throw new BadRequestException('Query must be at least 2 characters');
+    }
+
+    const parsed = Number(limit);
+    const take = Math.min(
+      20,
+      Math.max(1, Number.isFinite(parsed) && parsed > 0 ? Math.floor(parsed) : 8),
+    );
+
+    const data = await this.prisma.user.findMany({
+      where: {
+        OR: [
+          { username: { contains: q, mode: 'insensitive' } },
+          { displayName: { contains: q, mode: 'insensitive' } },
+        ],
+      },
+      orderBy: { username: 'asc' },
+      take,
+      select: {
+        id: true,
+        username: true,
+        displayName: true,
+        avatarUrl: true,
+      },
+    });
+
+    return { data };
+  }
 
   async findByUsername(username: string, currentUserId: string) {
     const user = await this.prisma.user.findUnique({

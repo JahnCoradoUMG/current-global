@@ -7,6 +7,7 @@ import { ApiError, clientApiFetch } from "@/lib/api";
 import { clearAuthToken } from "@/lib/auth";
 import type { NotificationItem, Paginated } from "@/lib/types";
 import { useSocket } from "./SocketProvider";
+import { UserSearch } from "./UserSearch";
 import styles from "./AppNav.module.css";
 
 function notifLabel(n: NotificationItem) {
@@ -250,6 +251,7 @@ export function AppNav({
 
         <div className={styles.column}>
           <header className={styles.topbar}>
+            <UserSearch />
             <Link
               href="/chat"
               className={`${styles.iconBtn} ${chatActive ? styles.iconActive : ""}`}

@@ -77,8 +77,11 @@ Guardar la variable en el servicio de Render y volver a desplegar.
 ## 5. Cloudinary
 
 1. Crear cuenta free.
-2. Copiar cloud name, API key, API secret a Render.
-3. Folder sugerido: `Current Global/posts`.
+2. Copiar cloud name, API key, API secret a Render, en el servicio `current-global-api`: `CLOUDINARY_CLOUD_NAME`, `CLOUDINARY_API_KEY`, `CLOUDINARY_API_SECRET`.
+3. La API sube a la carpeta `current-global/posts`.
+4. **Antes de probar imágenes en producción**, confirmar que esas tres variables ya están guardadas. Sin ellas el selector del frontend funciona, pero `POST /api/posts` con archivo responde 503 y no escribe en el disco de Render.
+5. Smoke de imágenes: publicar un post con imagen en el frontend público y verla en el feed y en el perfil. Un post de solo texto debe seguir publicándose igual.
+6. El buscador (`GET /api/users/search`) no depende de Cloudinary. Smoke: buscar un username existente desde la barra y abrir su perfil.
 
 ## 6. Orden recomendado
 
@@ -97,6 +100,9 @@ Guardar la variable en el servicio de Render y volver a desplegar.
 - [ ] `/api/docs` accesible sin VPN
 - [ ] Registro + login funcionan en prod
 - [ ] Al menos un post visible en feed prod
+- [ ] Variables `CLOUDINARY_*` definidas en Render antes del smoke de imágenes
+- [ ] Un post con imagen se ve en el feed y en el perfil de producción
+- [ ] El buscador de la barra encuentra un usuario y abre su perfil
 - [ ] Socket conecta (wss) en prod
 - [ ] Enlaces pegados en README y PDF (sin typos)
 

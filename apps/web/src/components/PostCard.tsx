@@ -189,7 +189,7 @@ export function PostCard({ post, meId }: { post: PostItem; meId: string }) {
         </time>
       </header>
 
-      <p className={styles.content}>{post.content}</p>
+      {post.content.trim() && <p className={styles.content}>{post.content}</p>}
       {post.mediaUrl && (
         // eslint-disable-next-line @next/next/no-img-element
         <img className={styles.media} src={post.mediaUrl} alt="" />
